@@ -22,7 +22,7 @@ if (isset($_POST['pickup'])) {
         $luggageReturn = "Not Allowed";
     }
     elseif($luggage == ""){
-        $luggageReturn = '0 KM';
+        $luggageReturn = '0 KG';
     }
     else{
         $luggageReturn = "$luggage KG";
