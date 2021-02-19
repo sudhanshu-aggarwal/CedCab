@@ -2,11 +2,16 @@
 
 class Ride
 {
+    public $pickup;
+    public $drop;
     public $distance;
     public $cabtype;
     public $luggage;
-    public function __construct($distance, $cabtype, $luggage)
+    public $totalAmount;
+    public function __construct($pickup, $drop, $distance, $cabtype, $luggage)
     {
+        $this->pickup = $pickup;
+        $this->drop = $drop;
         $this->distance = $distance;
         $this->cabtype = $cabtype;
         $this->luggage = $luggage;
@@ -78,5 +83,10 @@ class Ride
         $fare += (100 * $charges['distance3']);
         $fare += ($distance * $charges['distance4']);
         return $fare;
+    }
+
+    public function totalFare($luggageCharge, $distanceCharge){
+        $this->totalAmount = $luggageCharge + $distanceCharge;
+        return $this->totalAmount;
     }
 }

@@ -72,7 +72,7 @@ require_once('locationArray.php');
             <button type="submit" class="btn btn-dark" id="calculate">Calculate Fare</button>
             </div>
 
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" >
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -83,7 +83,7 @@ require_once('locationArray.php');
                         ...
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                         <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Book Ride</button>
                     </div>
                 </div>
@@ -148,7 +148,7 @@ require_once('locationArray.php');
                 },
                 success: (res) => {
                     let response = JSON.parse(res);
-                    $('.modal-body').html('Pickup Location: ' + response[0] + '<br>Drop Location: ' + response[1] + '<br>Distance: ' + response[2] + ' KM<br>Total Fare: ' + response[3]);
+                    $('.modal-body').html('Pickup Location: ' + response[0] + '<br>Drop Location: ' + response[1] + '<br>Luggage: ' + response[4] + '<br>Cab Type: ' + response[5] + '<br>Total Distance: ' + response[2] + ' KM<br>Total Fare: Rs ' + response[3] + '/-');
                     $('#exampleModal').modal('show');
                 }
             });

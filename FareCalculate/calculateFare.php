@@ -1,6 +1,6 @@
 <?php
 
-
+include_once('locationArray.php');
 
 if (isset($_POST['pickup'])) {
     require_once('Ride.php');
@@ -12,14 +12,25 @@ if (isset($_POST['pickup'])) {
     $loc1 = locations["$pickup"];
     $loc2 = locations["$drop"];
     $distance = abs($loc1 - $loc2);
-
-    $obj = new Ride($distance, $cabtype, $luggage);
+    $obj = new Ride($pickup, $drop, $distance, $cabtype, $luggage);
     $cabtypeFare = $obj->cabtypeFare();
     $luggageFare = $obj->luggageFare();
     $distanceFare = $obj->distanceFare($cabtypeFare);
-    $arr = [$pickup, $drop, $distance, ($luggageFare + $distanceFare)];
+    $totalFare = $obj->totalFare($luggageFare, $distanceFare);
+    if($cabtype == 'CedMicro')
+    {
+        $luggageReturn = "Not Allowed";
+    }
+    elseif($luggage == ""){
+        $luggageReturn = '0 KM';
+    }
+    else{
+        $luggageReturn = "$luggage KG";
+    }
+    $cabtypeReturn = cabtypes["$cabtype"];
+    $arr = [$pickup, $drop, $distance, $totalFare, $luggageReturn, $cabtypeReturn];
     $arr = json_encode($arr);
     print_r($arr);
 } else {
-    echo 'Can\'t Access This File...';
+    header("Location: index.php");
 }
